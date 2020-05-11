@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'apps.users',
     'apps.courts',
     'apps.sports',
+
+    'apps.frontend',
 ]
 
 MIDDLEWARE = [

@@ -1,12 +1,10 @@
 from django.db import models
 
+from apps.courts.models import Court
+
 
 # Create your models here.
 class Game(models.Model):
-    title = models.CharField(max_length=100, verbose_name='Название')
-
-    visibility = models.BooleanField(verbose_name='Публичная игра', default=True)
-    is_reported = models.BooleanField(verbose_name='Создан отчет', default=False)
 
     creator = models.ForeignKey(
         'users.User',
@@ -28,6 +26,8 @@ class Game(models.Model):
         default=0
     )
 
+    court = models.ForeignKey(Court, on_delete=models.CASCADE)
+
     datetime = models.DateTimeField(verbose_name='Начало')
 
     duration = models.DurationField(
@@ -36,6 +36,9 @@ class Game(models.Model):
         null=True,
         blank=True
     )
+
+    visibility = models.BooleanField(verbose_name='Публичная игра', default=True)
+    is_reported = models.BooleanField(verbose_name='Создан отчет', default=False)
 
     class Meta:
         verbose_name = 'игра'
