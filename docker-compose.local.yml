@@ -1,0 +1,29 @@
+version: '3.7'
+
+services:
+  postgresql:
+    restart: always
+    image: postgres:10-alpine
+    env_file:
+      - .envs/.postgresql
+    ports:
+      - "5432:5432"
+
+  backend:
+    image: easysport_backend
+    build: ./backend
+    # Dirty hack waiting for postgres to start
+    command: bash -c "sleep 5 && python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - ./backend/:/code:rw
+    depends_on:
+      - postgresql
+    env_file:
+      - .envs/.postgresql
+    ports:
+      - "8000:8000"
+
+
+# if use volumes for store db data
+# volumes:
+#   postgres_data:

@@ -1,0 +1,11 @@
+# Default ignored files
+/workspace.xml
+# Datasource local storage ignored files
+/dataSources.local.xml
+/$CACHE_FILE$
+/dataSources.xml
+/es_backend.iml
+/misc.xml
+/modules.xml
+/inspectionProfiles/profiles_settings.xml
+/vcs.xml
