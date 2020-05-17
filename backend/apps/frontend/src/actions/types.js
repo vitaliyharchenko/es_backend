@@ -2,3 +2,5 @@
 export const GET_GAMES = "GET_GAMES";
 
 export const GET_COURTS = "GET_COURTS";
+
+export const GET_USERS = "GET_USERS";

@@ -53,3 +53,53 @@ class Game(models.Model):
 
     def __str__(self):
         return u'{}'.format(self.datetime)
+
+    def get_statuses(self):
+        return UserGameRelation.objects.filter(game=self).order_by('-datetime')
+
+    def get_last_user_status(self, user):
+        return UserGameRelation.objects.filter(game=self).order_by('-datetime').filter(user=user).first()
+
+    def subscribers_count(self):
+        relations = UserGameRelation.objects.filter(game=self, status=UserGameRelation.SUBSCRIBED).count()
+        return relations
+
+
+class UserGameRelation(models.Model):
+    class Meta:
+        verbose_name = 'запись на игру'
+        verbose_name_plural = 'записи на игру'
+
+    SUBSCRIBED = 1
+    RESERVED = 2
+    UNSUBSCRIBED = 3
+    VISITED = 4
+    NOTVISITED = 5
+    STATUSES = (
+        (SUBSCRIBED, 'Записался'),
+        (UNSUBSCRIBED, 'Отписался'),
+        (RESERVED, 'В резерве'),
+        (VISITED, 'Посетил'),
+        (NOTVISITED, 'Не пришел')
+    )
+
+    user = models.ForeignKey(
+        'users.User',
+        verbose_name='Пользователь',
+        related_name=u'usergame',
+        on_delete=models.CASCADE
+    )
+
+    game = models.ForeignKey(
+        'games.Game',
+        verbose_name='Игра',
+        related_name='statuses',
+        on_delete=models.CASCADE
+    )
+
+    datetime = models.DateTimeField(verbose_name='Дата действия', auto_now=True)
+
+    status = models.PositiveSmallIntegerField(verbose_name='Действие', choices=STATUSES, null=True)
+
+    def __str__(self):
+        return u'{} | {}'.format(self.user, self.get_status_display())

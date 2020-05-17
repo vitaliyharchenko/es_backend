@@ -72,17 +72,16 @@ class User(AbstractBaseUser, PermissionsMixin):
                              help_text=u'В формате ГГГ-ММ-ДД')
     avatar = models.ImageField(upload_to=get_avatar_path, null=True, blank=True)
 
-    # sport_types = models.ManyToManyField(SportType, blank=True)
-    # amplua = models.ManyToManyField(Amplua, blank=True, null=True)
+    sport_roles = models.ManyToManyField('sports.SportRole', blank=True)
 
-    # city = models.ForeignKey(
-    #     City,
-    #     verbose_name='Город',
-    #     on_delete=models.CASCADE,
-    #     related_name='user_city',
-    #     default=None,
-    #     null=True
-    # )
+    city = models.ForeignKey(
+        'courts.City',
+        verbose_name='Город',
+        on_delete=models.CASCADE,
+        related_name='user_city',
+        default=None,
+        null=True
+    )
 
     # # phone = PhoneNumberField(
     #     verbose_name='Мобильный телефон',

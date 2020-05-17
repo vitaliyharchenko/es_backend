@@ -18,7 +18,7 @@ from django.urls import path, include
 
 from rest_framework import routers
 
-from apps.games.views import GameViewSet
+from apps.games.views import GameViewSet, UserGameViewSet
 from apps.users.views import GroupViewSet
 from apps.users.views import UserViewSet
 from apps.courts.views import CourtViewSet
@@ -27,6 +27,7 @@ from apps.sports.views import GameTypeViewSet, SportTypeViewSet, SportRoleViewSe
 
 router = routers.DefaultRouter()
 router.register(r'games', GameViewSet)
+router.register(r'user_games', UserGameViewSet)
 router.register(r'users', UserViewSet)
 router.register(r'groups', GroupViewSet)
 router.register(r'courts', CourtViewSet)

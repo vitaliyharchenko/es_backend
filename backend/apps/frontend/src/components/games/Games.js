@@ -56,13 +56,15 @@ export class Games extends Component {
                                             </p>
                                             <div className="progress" style={styles.progress}>
                                                 <div className="progress-bar"
-                                                     style={Object.assign({}, styles.progressBar, {width: '30%'})}>
-                                                    4/{game.capacity}
+                                                     style={Object.assign({}, styles.progressBar, {width: `${ Math.floor(game.subscribers_count / game.capacity * 100) }%`})}>
+                                                    {game.subscribers_count}/{game.capacity}
                                                 </div>
                                             </div>
-                                            <button className="btn btn-primary btn-block"
-                                                    style={styles.button}>ЗАПИСАТЬСЯ
-                                            </button>
+                                            {(game.user_status === 1)
+                                                ? <button className="btn btn-success btn-block" style={styles.button.success}>ВЫ ЗАПИСАНЫ</button>
+                                                : <button className="btn btn-primary btn-block" style={styles.button.regular}>ЗАПИСАТЬСЯ</button>
+
+                                            }
                                         </div>
                                     </div>
                                 </div>
@@ -120,10 +122,18 @@ const styles = {
         backgroundColor: '#5993DC'
     },
     button: {
-        height: 40,
-        borderRadius: 20,
-        backgroundColor: '#5993DC',
-        borderWidth: 0
+        regular: {
+            height: 40,
+            borderRadius: 20,
+            backgroundColor: '#5993DC',
+            borderWidth: 0
+        },
+        success: {
+            height: 40,
+            borderRadius: 20,
+            backgroundColor: '#4DB56A',
+            borderWidth: 0
+        }
     }
 };
 

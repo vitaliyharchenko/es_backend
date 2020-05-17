@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import Header from './layout/Header';
 import Games from "./games/Games";
 import Courts from "./courts/Courts";
+import Users from "./users/Users";
 
 import { Provider } from 'react-redux';
 import store from '../store';
@@ -17,6 +18,7 @@ class App extends Component {
                     <div className="container">
                         <Games />
                         <Courts />
+                        <Users />
                     </div>
                 </Fragment>
             </Provider>

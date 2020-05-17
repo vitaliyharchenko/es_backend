@@ -1,7 +1,7 @@
-import { GET_GAMES } from '../actions/types.js';
+import { GET_USERS } from '../actions/types.js';
 
 const initialState = {
-    games: []
+    users: []
 };
 
 
@@ -11,12 +11,12 @@ const initialState = {
 // payload содержит в себе данные, которые внесутся или повлияют на state
 // эти данные могут быть получены по сети, от пользовательского ввода - от чего угодно
 
-export default function games(state = initialState, action) {
+export default function (state = initialState, action) {
     switch (action.type) {
-        case GET_GAMES:
+        case GET_USERS:
             return {
                 ...state,
-                games: action.payload,
+                users: action.payload,
             };
         default:
             return state;

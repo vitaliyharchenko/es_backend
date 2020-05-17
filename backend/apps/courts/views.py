@@ -9,6 +9,6 @@ class CourtViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
     """
-    queryset = Court.objects.all()
+    queryset = Court.objects.all().order_by('views')
     serializer_class = CourtSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]

@@ -23,12 +23,15 @@ export class Courts extends Component {
                     <div className="col-12">
                         <div className="row">
                             {this.props.courts.map(court => (
-                                <div className="col-12 col-md-6 col-xl-4" key={court.id}>
+                                <div className="col-12 col-sm-6 col-md-4 col-xl-3" key={court.id}>
                                     <div className="card" style={styles.card}>
-                                        <img src="http://easysport.online/media/courts/18.jpg" alt="" className="card-img-top"/>
+                                        <img style={styles.image} src="http://easysport.online/media/courts/18.jpg" alt="" className="card-img-top"/>
                                         <div className="card-body" style={styles.cardBody}>
-                                            <p>
+                                            <p style={styles.title}>
                                                 { court.title }
+                                            </p>
+                                            <p style={styles.address}>
+                                                { court.place.address }
                                             </p>
                                         </div>
                                     </div>
@@ -48,10 +51,21 @@ const styles = {
     },
     card: {
         marginBottom: 20,
-        borderRadius: 15
+        borderRadius: 15,
+        overflow: "hidden"
     },
     cardBody: {
         position: 'relative'
+    },
+    image: {
+    },
+    title: {
+        marginBottom: 0
+    },
+    address: {
+        fontSize: 14,
+        color: "#5b5b5b",
+        marginBottom: 0
     }
 };
 
