@@ -34,23 +34,21 @@ export class Users extends Component {
             <div style={{ paddingTop: 20 }}>
                 <h1 style={styles.header}>Игроки</h1>
                 <hr/>
-                <div className="row">
-                    <div className="col-12">
-                        <div className="card-columns" style={{ columnCount: 5 }}>
-                            {this.props.users.map(user => (
-                                <div className="card" key={user.id} style={styles.card}>
-                                    <img src="http://easysport.online/media/avatars/IMG_1584.JPG" className="card-img-top" alt="" />
-                                    <div className="card-body">
-                                        <h5 className="card-title">{ user.get_full_name }</h5>
-                                        <p className="card-text" style={styles.cardText}>
-                                            { parseAge(user.bdate) }, { user.city.title }
-                                        </p>
-                                        <p className="card-text"><small className="text-muted">В сети { parseHours(user.last_login) }</small></p>
-                                    </div>
+                <div className="row row-cols-3 row-cols-md-5">
+                    {this.props.users.map(user => (
+                        <div className="col mb-4" key={user.id}>
+                            <div className="card" style={styles.card}>
+                                <img src="http://easysport.online/media/avatars/IMG_1584.JPG" className="card-img-top" alt="" />
+                                <div className="card-body">
+                                    <h5 className="card-title">{ user.get_full_name }</h5>
+                                    <p className="card-text" style={styles.cardText}>
+                                        { parseAge(user.bdate) }, { user.city.title }
+                                    </p>
+                                    <p className="card-text"><small className="text-muted">В сети { parseHours(user.last_login) }</small></p>
                                 </div>
-                            ))}
+                            </div>
                         </div>
-                    </div>
+                    ))}
                 </div>
             </div>
         )
