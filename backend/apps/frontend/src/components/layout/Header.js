@@ -6,7 +6,7 @@ export class Header extends Component {
         return (
             <nav className="navbar navbar-expand-sm navbar-light bg-light">
                 <div className="container">
-                    <a className="navbar-brand" href="#">EasySport</a>
+                    <Link className="navbar-brand" to="/">EasySport</Link>
                     <button className="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
                             aria-label="Toggle navigation">
@@ -14,14 +14,14 @@ export class Header extends Component {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div className="navbar-nav">
-                            <Link to="/games">
-                                <a className="nav-item nav-link">Игры <span className="sr-only">(current)</span></a>
+                            <Link to="/games" className="nav-item nav-link">
+                                Игры
                             </Link>
-                            <Link to="/courts">
-                                <a className="nav-item nav-link">Площадки <span className="sr-only">(current)</span></a>
+                            <Link to="/courts" className="nav-item nav-link">
+                                Площадки
                             </Link>
-                            <Link to="/users">
-                                <a className="nav-item nav-link">Игроки <span className="sr-only">(current)</span></a>
+                            <Link to="/users" className="nav-item nav-link">
+                                Игроки
                             </Link>
                         </div>
                     </div>
