@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getUsers } from "../../actions/users";
@@ -15,7 +15,6 @@ const parseAge = dateString => {
 const parseHours = dateString => {
     moment.locale('ru');
     const date = moment.parseZone(dateString);
-    console.log(moment(date).fromNow());
     return moment(date).fromNow();
 };
 
@@ -70,7 +69,7 @@ const styles = {
 };
 
 // попадаем в games reducer и достаем games массив
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     users: state.usersReducer.users
 });
 

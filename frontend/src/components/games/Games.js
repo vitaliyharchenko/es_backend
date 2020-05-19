@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getGames } from "../../actions/games";
@@ -46,13 +46,13 @@ export class Games extends Component {
                                         {/*<img src="http://easysport.online/media/courts/18.jpg" alt="" className="card-img-top"/>*/}
                                         <div className="card-body" style={styles.cardBody}>
                                             <p style={styles.sportType}>
-                                                🏀 &nbsp;{game.game_type.sport_type.title.toUpperCase()}&nbsp;&nbsp;&nbsp;&nbsp;{game.game_type.title.toUpperCase()}
+                                                <span role="img" aria-label="ball">🏀</span>&nbsp;{game.game_type.sport_type.title.toUpperCase()}&nbsp;&nbsp;&nbsp;&nbsp;{game.game_type.title.toUpperCase()}
                                             </p>
                                             <span style={styles.price} className="badge">{game.cost} RUB</span>
                                             <p style={styles.court}>{game.court.title}</p>
                                             <p>
-                                                <span style={styles.datetime}>🗓️ {parseDate(game.datetime).date}</span>
-                                                <span>🕑 {parseDate(game.datetime).time} ({parseDuration(game.duration)})</span>
+                                                <span style={styles.datetime}><span role="img" aria-label="calendar">🗓️</span> {parseDate(game.datetime).date}</span>
+                                                <span><span role="img" aria-label="clock">🕑</span> {parseDate(game.datetime).time} ({parseDuration(game.duration)})</span>
                                             </p>
                                             <div className="progress" style={styles.progress}>
                                                 <div className="progress-bar"

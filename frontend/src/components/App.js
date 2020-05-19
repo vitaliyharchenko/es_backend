@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import Header from './layout/Header';
 import Games from "./games/Games";
 import Courts from "./courts/Courts";
+import Court from "./courts/Court";
 import Users from "./users/Users";
 
 
@@ -21,15 +22,12 @@ class App extends Component {
                         <Route path="/users">
                             <Users />
                         </Route>
-                        <Route path="/courts">
+                        <Route exact path="/courts">
                             <Courts />
                         </Route>
-                        <Route path="/courts/:courtId" children={<Courts/>}>
-                        </Route>
+                        <Route path="/courts/:courtId" component={Court} />
                         <Route path="/">
-                            <Games />
-                            <Courts />
-                            <Users />
+                            <p>Index</p>
                         </Route>
                     </Switch>
                 </div>
@@ -38,4 +36,4 @@ class App extends Component {
     }
 }
 
-export default App
+export default App;

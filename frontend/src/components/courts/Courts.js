@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { getCourts } from "../../actions/courts";
+import CourtCard from "./CourtCard";
 
 
 export class Courts extends Component {
@@ -18,25 +19,13 @@ export class Courts extends Component {
     render() {
         return (
             <div style={{ paddingTop: 20 }}>
-                <h1 style={styles.header}>Площадки { id }</h1>
+                <h1 style={styles.header}>Площадки</h1>
                 <hr/>
                 <div className="row">
                     <div className="col-12">
                         <div className="row">
                             {this.props.courts.map(court => (
-                                <div className="col-12 col-sm-6 col-md-4 col-xl-3" key={court.id}>
-                                    <div className="card" style={styles.card}>
-                                        <img style={styles.image} src="http://easysport.online/media/courts/18.jpg" alt="" className="card-img-top"/>
-                                        <div className="card-body" style={styles.cardBody}>
-                                            <p style={styles.title}>
-                                                { court.title }
-                                            </p>
-                                            <p style={styles.address}>
-                                                { court.place.address }
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
+                                <CourtCard court={court} key={court.id}/>
                             ))}
                         </div>
                     </div>
@@ -71,7 +60,7 @@ const styles = {
 };
 
 // попадаем в games reducer и достаем games массив
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     courts: state.courtsReducer.courts
 });
 

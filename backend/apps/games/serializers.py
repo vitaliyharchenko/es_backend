@@ -22,9 +22,12 @@ class GameSerializer(serializers.HyperlinkedModelSerializer):
 
     def get_user_status(self, obj):
         user = self.context["request"].user
-        last_user_game_relation = obj.get_last_user_status(user)
-        if last_user_game_relation is not None:
-            return last_user_game_relation.status
+        if user.is_authenticated:
+            last_user_game_relation = obj.get_last_user_status(user)
+            if last_user_game_relation is not None:
+                return last_user_game_relation.status
+            else:
+                return None
         else:
             return None
 
