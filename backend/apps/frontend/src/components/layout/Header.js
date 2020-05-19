@@ -23,6 +23,9 @@ export class Header extends Component {
                             <Link to="/users" className="nav-item nav-link">
                                 Игроки
                             </Link>
+                            <Link to="/courts/1">
+                                Площадка 1
+                            </Link>
                         </div>
                     </div>
                 </div>

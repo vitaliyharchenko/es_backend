@@ -24,7 +24,7 @@ class App extends Component {
                         <Route path="/courts">
                             <Courts />
                         </Route>
-                        <Route path="/courts/:id" children={<Courts/>}>
+                        <Route path="/courts/:courtId" children={<Courts/>}>
                         </Route>
                         <Route path="/">
                             <Games />

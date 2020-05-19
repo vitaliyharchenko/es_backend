@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { useParams } from 'react-router-dom';
+
 import { getCourts } from "../../actions/courts";
 
 
@@ -16,10 +16,9 @@ export class Courts extends Component {
     };
 
     render() {
-
         return (
             <div style={{ paddingTop: 20 }}>
-                <h1 style={styles.header}>Площадки</h1>
+                <h1 style={styles.header}>Площадки { id }</h1>
                 <hr/>
                 <div className="row">
                     <div className="col-12">
