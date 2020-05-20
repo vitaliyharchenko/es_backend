@@ -2,25 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getGames } from "../../actions/games";
-import moment from 'moment';
+import GameCard from "./GameCard";
 
-const parseDate = dateString => {
-    moment.locale('ru');
-    const date = moment.parseZone(dateString);
-    return {
-        date: date.format("D MMM, dd"),
-        time: date.format("HH:mm")
-    };
-};
-
-const parseDuration = durationString => {
-    const duration = moment.duration(durationString);
-    if (duration.asMinutes() % 60 === 0) {
-        return duration.locale('ru').humanize();
-    } else {
-        return `${duration.asMinutes()} мин`;
-    }
-};
 
 export class Games extends Component {
     static propTypes = {
@@ -42,31 +25,7 @@ export class Games extends Component {
                         <div className="row">
                             {this.props.games.map(game => (
                                 <div className="col-12 col-md-6 col-xl-4" key={game.id}>
-                                    <div className="card" style={styles.card}>
-                                        {/*<img src="http://easysport.online/media/courts/18.jpg" alt="" className="card-img-top"/>*/}
-                                        <div className="card-body" style={styles.cardBody}>
-                                            <p style={styles.sportType}>
-                                                <span role="img" aria-label="ball">🏀</span>&nbsp;{game.game_type.sport_type.title.toUpperCase()}&nbsp;&nbsp;&nbsp;&nbsp;{game.game_type.title.toUpperCase()}
-                                            </p>
-                                            <span style={styles.price} className="badge">{game.cost} RUB</span>
-                                            <p style={styles.court}>{game.court.title}</p>
-                                            <p>
-                                                <span style={styles.datetime}><span role="img" aria-label="calendar">🗓️</span> {parseDate(game.datetime).date}</span>
-                                                <span><span role="img" aria-label="clock">🕑</span> {parseDate(game.datetime).time} ({parseDuration(game.duration)})</span>
-                                            </p>
-                                            <div className="progress" style={styles.progress}>
-                                                <div className="progress-bar"
-                                                     style={Object.assign({}, styles.progressBar, {width: `${ Math.floor(game.subscribers_count / game.capacity * 100) }%`})}>
-                                                    {game.subscribers_count}/{game.capacity}
-                                                </div>
-                                            </div>
-                                            {(game.user_status === 1)
-                                                ? <button className="btn btn-success btn-block" style={styles.button.success}>ВЫ ЗАПИСАНЫ</button>
-                                                : <button className="btn btn-primary btn-block" style={styles.button.regular}>ЗАПИСАТЬСЯ</button>
-
-                                            }
-                                        </div>
-                                    </div>
+                                    <GameCard game={game} key={game.id}/>
                                 </div>
                             ))}
                         </div>
@@ -80,60 +39,6 @@ export class Games extends Component {
 const styles = {
     header: {
       fontWeight: 'bold'
-    },
-    card: {
-        marginBottom: 20,
-        borderRadius: 15
-    },
-    cardBody: {
-        position: 'relative'
-    },
-    sportType: {
-        fontSize: 14,
-        fontWeight: 500,
-        color: "#5b5b5b",
-        paddingTop: 3
-    },
-    price: {
-        position: 'absolute',
-        top: 15,
-        right: 20,
-        fontSize: 14,
-        fontWeight: 500,
-        padding: 10,
-        backgroundColor: '#E9F1FB',
-        color: '#5993DC'
-    },
-    court: {
-        fontSize: 24,
-        fontWeight: 500,
-        marginBottom: 5
-    },
-    datetime: {
-        marginRight: 20
-    },
-    progress: {
-        marginBottom: 15,
-        height: 20,
-        borderRadius: 10,
-        backgroundColor: '#E9F1FB'
-    },
-    progressBar: {
-        backgroundColor: '#5993DC'
-    },
-    button: {
-        regular: {
-            height: 40,
-            borderRadius: 20,
-            backgroundColor: '#5993DC',
-            borderWidth: 0
-        },
-        success: {
-            height: 40,
-            borderRadius: 20,
-            backgroundColor: '#4DB56A',
-            borderWidth: 0
-        }
     }
 };
 

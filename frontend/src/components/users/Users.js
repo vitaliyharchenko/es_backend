@@ -2,21 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getUsers } from "../../actions/users";
-import moment from "moment";
+import {Link} from "react-router-dom";
+import { parseAge, parseHours } from './beautyfiers';
 
-
-const parseAge = dateString => {
-    moment.locale('ru');
-    const date = moment.parseZone(dateString);
-    const formatDate = date.format("YYYYMMDD");
-    return moment().diff(moment(formatDate, 'YYYYMMDD'), 'years');
-};
-
-const parseHours = dateString => {
-    moment.locale('ru');
-    const date = moment.parseZone(dateString);
-    return moment(date).fromNow();
-};
 
 export class Users extends Component {
     static propTypes = {
@@ -36,7 +24,7 @@ export class Users extends Component {
                 <div className="row row-cols-3 row-cols-md-5">
                     {this.props.users.map(user => (
                         <div className="col mb-4" key={user.id}>
-                            <div className="card" style={styles.card}>
+                            <Link to={`/users/${user.id}`} className="card" style={styles.card}>
                                 <img src="http://easysport.online/media/avatars/IMG_1584.JPG" className="card-img-top" alt="" />
                                 <div className="card-body">
                                     <h5 className="card-title">{ user.get_full_name }</h5>
@@ -45,7 +33,7 @@ export class Users extends Component {
                                     </p>
                                     <p className="card-text"><small className="text-muted">В сети { parseHours(user.last_login) }</small></p>
                                 </div>
-                            </div>
+                            </Link>
                         </div>
                     ))}
                 </div>
@@ -61,7 +49,9 @@ const styles = {
     card: {
         marginBottom: 20,
         borderRadius: 15,
-        overflow: "hidden"
+        overflow: "hidden",
+        textDecoration: "none",
+        color: "inherit"
     },
     cardText: {
         marginBottom: 0
